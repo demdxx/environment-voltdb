@@ -1,0 +1,12 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Update apt cache
+      apt: update_cache=yes
+      sudo: yes
+      tags:
+      - voltdb
+
+  roles:
+     - ../environment-voltdb

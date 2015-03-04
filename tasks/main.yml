@@ -1,0 +1,40 @@
+
+- name: Build requirements
+  apt: pkg={{ item }}
+  tags:
+  - voltdb
+  - run
+  with_items:
+  - openjdk-7-jre 
+  - openjdk-7-jdk
+  - ant
+  - ant-optional
+  - build-essential
+  - valgrind
+  - ccache
+  - git-core
+  - python
+  - python-httplib2
+  - python-setuptools
+  - python-dev
+  sudo: yes
+
+- name: Clone VoltDB
+  git: repo=https://github.com/VoltDB/voltdb.git dest=/voltdb version=voltdb-5.0.2 
+  notify:
+  - Build VoltDB
+  - Install VoltDB
+  tags:
+  - voltdb
+  - run
+  sudo: yes
+
+- name: Copy upstart script
+  copy: src=files/voltdb.conf dest=/etc/init mode=0644
+  sudo: yes
+  notify:
+  - Restart VoltDB
+  tags:
+  - voltdb
+  - run
+

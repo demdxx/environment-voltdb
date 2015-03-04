@@ -1,0 +1,13 @@
+
+- name: Build VoltDB
+  shell: ant clean dist debian_package chdir=/voltdb
+  sudo: yes
+
+- name: Install VoltDB
+  apt: deb=/voltdb/voltdb_5.0.2-1_amd64.deb
+  sudo: yes
+
+- name: Restart VoltDB
+  service: name=voltdb state=restarted
+  sudo: yes
+
