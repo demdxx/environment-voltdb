@@ -7,6 +7,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64"
   config.vm.box = "ubuntu/trusty64"
 
+  config.vm.hostname = "vagrant-voltdb"
+  config.vm.network :private_network, type: "dhcp"
+
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
     ansible.tags = "voltdb"
@@ -17,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
