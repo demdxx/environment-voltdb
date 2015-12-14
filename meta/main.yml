@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Sean Van
+  description: Environment for voltdb.
+  company: 
+  license: license (MIT)
+  min_ansible_version: 1.5
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+
+  - name: Debian
+    versions:
+    - all
+
+  categories:
+  - database
+  - database:sql
+
+dependencies: []
